@@ -48,8 +48,6 @@ export GOOGLE_API_KEY="your_google_api_key"
 ```
 
 **For AWS Bedrock Agent (`aws_bedrock_agent.py`):**
-- Ensure your AWS environment is configured for Boto3. This typically means you have run `aws configure` and have credentials and a default region set up, or your environment (e.g., EC2 instance) has an IAM role with Bedrock permissions.
-- If you need to use specific AWS access keys (not recommended if IAM roles or `aws configure` profiles are available):
   ```bash
   export AWS_ACCESS_KEY_ID="your_aws_access_key_id"
   export AWS_SECRET_ACCESS_KEY="your_aws_secret_access_key"
