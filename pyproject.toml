@@ -5,5 +5,6 @@ description = "2025 Pycon Colombia's PydanticAI demo code from Juan F. Duque's t
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
+    "ollama>=0.5.1",
     "pydantic-ai>=0.3.4",
 ]
