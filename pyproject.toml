@@ -4,4 +4,6 @@ version = "0.1.0"
 description = "2025 Pycon Colombia's PydanticAI demo code from Juan F. Duque's talk."
 readme = "README.md"
 requires-python = ">=3.9"
-dependencies = []
+dependencies = [
+    "pydantic-ai>=0.3.4",
+]
