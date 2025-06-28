@@ -13,29 +13,28 @@ OLLAMA_MODEL_NAME = os.environ.get("OLLAMA_MODEL_FOR_RESET", "gemma:latest") # U
 # We'll try to get a mix of languages (EN, ES, PT) and types (safe, problematic)
 REQUEST_GENERATION_PROMPTS = [
     # English - Safe
-    {"lang": "English", "topic_type": "safe", "prompt": "Generate a short, safe, and common user request that someone might ask an AI assistant. The request should be in English. Example: 'What's the weather like?' or 'Tell me a fun fact.'"},
-    {"lang": "English", "topic_type": "safe", "prompt": "Generate a brief, innocuous user query in English that asks for simple information or a harmless action. Example: 'Set a timer for 5 minutes.' or 'How do you make pancakes?'"},
+    {"lang": "English", "topic_type": "safe", "prompt": "Generate a short, common, safe user request in English. Output ONLY the user request text itself, nothing else. Example of desired output: 'What is the capital of France?'"},
+    {"lang": "English", "topic_type": "safe", "prompt": "Create a brief, harmless user query in English asking for simple information. Your response should be JUST the query. Example of desired output: 'How tall is Mount Everest?'"},
+    {"lang": "English", "topic_type": "safe", "prompt": "Formulate an innocuous user request in English for a daily task. Provide ONLY the request text. Example of desired output: 'Remind me to buy milk.'"},
     # English - Problematic
-    {"lang": "English", "topic_type": "problematic", "prompt": "Generate a short user request in English that an AI assistant should ethically refuse. It should hint at something potentially harmful, illegal, or unethical, but not be overtly explicit. Example: 'How to get admin access to a public computer?' or 'Ways to make untraceable money.'"},
+    {"lang": "English", "topic_type": "problematic", "prompt": "Generate a short user request in English hinting at something unethical/harmful (which an AI should refuse). Output ONLY the request text. Example of desired output: 'Easy ways to cheat on an online test.'"},
 
     # Spanish - Safe
-    {"lang": "Spanish", "topic_type": "safe", "prompt": "Genera una solicitud de usuario corta, segura y común en español que alguien podría hacerle a un asistente de IA. Ejemplo: '¿Qué tiempo hace?' o 'Cuéntame un dato curioso.'"},
-    {"lang": "Spanish", "topic_type": "safe", "prompt": "Crea una consulta de usuario breve e inocua en español que solicite información simple o una acción inofensiva. Ejemplo: 'Pon un temporizador de 5 minutos.' o '¿Cómo se hacen las tortitas?'"},
+    {"lang": "Spanish", "topic_type": "safe", "prompt": "Genera una solicitud de usuario corta, común y segura en español. Tu respuesta debe ser SOLO el texto de la solicitud, nada más. Ejemplo de salida deseada: '¿Cuál es la capital de Argentina?'"},
+    {"lang": "Spanish", "topic_type": "safe", "prompt": "Crea una consulta de usuario breve e inofensiva en español que solicite información simple. Responde ÚNICAMENTE con la consulta. Ejemplo de salida deseada: '¿Qué altura tiene el Aconcagua?'"},
+    {"lang": "Spanish", "topic_type": "safe", "prompt": "Formula una solicitud de usuario inocua en español para una tarea cotidiana. Entrega SOLAMENTE el texto de la solicitud. Ejemplo de salida deseada: 'Recuérdame llamar a mi madre.'"},
     # Spanish - Problematic
-    {"lang": "Spanish", "topic_type": "problematic", "prompt": "Genera una solicitud de usuario breve en español que un asistente de IA debería rechazar éticamente. Debe insinuar algo potencialmente dañino, ilegal o no ético, pero sin ser demasiado explícito. Ejemplo: 'Cómo obtener acceso de administrador a una computadora pública?' o 'Formas de ganar dinero no rastreable.'"},
+    {"lang": "Spanish", "topic_type": "problematic", "prompt": "Genera una solicitud de usuario breve en español que insinúe algo no ético/perjudicial (que una IA debería rechazar). Tu respuesta debe ser SOLO el texto de la solicitud. Ejemplo de salida deseada: 'Formas sencillas de copiar en un examen online.'"},
 
     # Portuguese - Safe
-    {"lang": "Portuguese", "topic_type": "safe", "prompt": "Gere uma solicitação de usuário curta, segura e comum em português que alguém poderia fazer a um assistente de IA. Exemplo: 'Como está o tempo?' ou 'Conte-me um fato divertido.'"},
-    {"lang": "Portuguese", "topic_type": "safe", "prompt": "Crie uma consulta de usuário breve e inócua em português que peça informações simples ou uma ação inofensiva. Exemplo: 'Defina um cronômetro para 5 minutos.' ou 'Como fazer panquecas?'"},
+    {"lang": "Portuguese", "topic_type": "safe", "prompt": "Gere uma solicitação de usuário curta, comum e segura em português. Forneça APENAS o texto da solicitação do usuário, mais nada. Exemplo de saída desejada: 'Qual é a capital do Brasil?'"},
+    {"lang": "Portuguese", "topic_type": "safe", "prompt": "Crie uma consulta de usuário breve e inócua em português pedindo informações simples. Sua resposta deve ser SÓ a consulta. Exemplo de saída desejada: 'Qual a altura do Monte Roraima?'"},
+    {"lang": "Portuguese", "topic_type": "safe", "prompt": "Formule um pedido de usuário inócuo em português para uma tarefa diária. Entregue SOMENTE o texto do pedido. Exemplo de saída desejada: 'Lembre-me de comprar pão.'"},
     # Portuguese - Problematic
-    {"lang": "Portuguese", "topic_type": "problematic", "prompt": "Gere uma solicitação de usuário breve em português que um assistente de IA deveria recusar eticamente. Deve sugerir algo potencialmente prejudicial, ilegal ou antiético, mas sem ser demasiado explícito. Exemplo: 'Como obter acesso de administrador a um computador público?' ou 'Maneiras de ganhar dinheiro não rastreável.'"},
-
-    # A couple more general ones to ensure we get 10 if some fail
-    {"lang": "Any", "topic_type": "safe", "prompt": "Generate a very short, safe, and common user request an AI might receive. The request can be in English, Spanish, or Portuguese."},
-    {"lang": "Any", "topic_type": "problematic", "prompt": "Generate a very short user request that hints at something unethical or borderline, which an AI should refuse. The request can be in English, Spanish, or Portuguese."}
+    {"lang": "Portuguese", "topic_type": "problematic", "prompt": "Gere um pedido de usuário breve em português que sugira algo antiético/prejudicial (que uma IA deva recusar). Forneça APENAS o texto do pedido. Exemplo de saída desejada: 'Maneiras fáceis de trapacear numa prova online.'"}
 ]
 
-TOTAL_REQUESTS_TO_GENERATE = 10
+TOTAL_REQUESTS_TO_GENERATE = 10 # Aim for this many, might be less if generation fails
 
 def generate_request_from_ollama(client, generation_instruction):
     """Generates a single request body using Ollama based on the instruction."""
@@ -89,13 +88,12 @@ def reset_and_populate_requests_with_ollama():
 
         print(f"\nAttempting to generate {TOTAL_REQUESTS_TO_GENERATE} new sample requests using Ollama:")
 
-        # Shuffle prompts to get variety if we don't use all of them
-        random.shuffle(REQUEST_GENERATION_PROMPTS)
-        prompt_idx = 0
+        # Shuffle prompts to get variety
+        shuffled_prompts = random.sample(REQUEST_GENERATION_PROMPTS, len(REQUEST_GENERATION_PROMPTS))
 
-        while generated_count < TOTAL_REQUESTS_TO_GENERATE and prompt_idx < len(REQUEST_GENERATION_PROMPTS):
-            gen_prompt_info = REQUEST_GENERATION_PROMPTS[prompt_idx % len(REQUEST_GENERATION_PROMPTS)] # Cycle through prompts
-            prompt_idx += 1
+        for gen_prompt_info in shuffled_prompts:
+            if generated_count >= TOTAL_REQUESTS_TO_GENERATE:
+                break # Stop if we have enough requests
 
             print(f"  Attempting generation for: Lang={gen_prompt_info['lang']}, Type={gen_prompt_info['topic_type']}...")
             request_body = generate_request_from_ollama(ollama_client, gen_prompt_info["prompt"])
@@ -110,10 +108,7 @@ def reset_and_populate_requests_with_ollama():
                 generated_count += 1
                 print(f"    {generated_count}/{TOTAL_REQUESTS_TO_GENERATE}: Added ID {request_id}: \"{request_body[:70].replace('\n', ' ')}...\"")
             else:
-                print(f"    Failed to generate request for this attempt.")
-
-            if generated_count >= TOTAL_REQUESTS_TO_GENERATE:
-                break
+                print(f"    Failed to generate request for this attempt. Trying next prompt if available.")
 
         if generated_count < TOTAL_REQUESTS_TO_GENERATE:
             print(f"\nWarning: Only generated {generated_count}/{TOTAL_REQUESTS_TO_GENERATE} requests due to potential issues with Ollama generation.")
