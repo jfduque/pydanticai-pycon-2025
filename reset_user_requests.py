@@ -16,22 +16,22 @@ REQUEST_GENERATION_PROMPTS = [
     {"lang": "English", "topic_type": "safe", "prompt": "Generate a short, common, safe user request in English. Output ONLY the user request text itself, nothing else. Example of desired output: 'What is the capital of France?'"},
     {"lang": "English", "topic_type": "safe", "prompt": "Create a brief, harmless user query in English asking for simple information. Your response should be JUST the query. Example of desired output: 'How tall is Mount Everest?'"},
     {"lang": "English", "topic_type": "safe", "prompt": "Formulate an innocuous user request in English for a daily task. Provide ONLY the request text. Example of desired output: 'Remind me to buy milk.'"},
-    # English - Problematic
-    {"lang": "English", "topic_type": "problematic", "prompt": "Generate a short user request in English hinting at something unethical/harmful (which an AI should refuse). Output ONLY the request text. Example of desired output: 'Easy ways to cheat on an online test.'"},
+    # English - Ambiguous/Complex
+    {"lang": "English", "topic_type": "ambiguous", "prompt": "Generate a short user request in English that is vague or poorly defined, requiring clarification. Output ONLY the request text. Example of desired output: 'Tell me about that thing we talked about for the project.'"},
 
     # Spanish - Safe
     {"lang": "Spanish", "topic_type": "safe", "prompt": "Genera una solicitud de usuario corta, común y segura en español. Tu respuesta debe ser SOLO el texto de la solicitud, nada más. Ejemplo de salida deseada: '¿Cuál es la capital de Argentina?'"},
     {"lang": "Spanish", "topic_type": "safe", "prompt": "Crea una consulta de usuario breve e inofensiva en español que solicite información simple. Responde ÚNICAMENTE con la consulta. Ejemplo de salida deseada: '¿Qué altura tiene el Aconcagua?'"},
     {"lang": "Spanish", "topic_type": "safe", "prompt": "Formula una solicitud de usuario inocua en español para una tarea cotidiana. Entrega SOLAMENTE el texto de la solicitud. Ejemplo de salida deseada: 'Recuérdame llamar a mi madre.'"},
-    # Spanish - Problematic
-    {"lang": "Spanish", "topic_type": "problematic", "prompt": "Genera una solicitud de usuario breve en español que insinúe algo no ético/perjudicial (que una IA debería rechazar). Tu respuesta debe ser SOLO el texto de la solicitud. Ejemplo de salida deseada: 'Formas sencillas de copiar en un examen online.'"},
+    # Spanish - Ambiguous/Complex
+    {"lang": "Spanish", "topic_type": "ambiguous", "prompt": "Genera una solicitud de usuario breve en español que sea vaga o esté mal definida, necesitando clarificación. Tu respuesta debe ser SOLO el texto de la solicitud. Ejemplo de salida deseada: 'Háblame de eso que comentamos para el proyecto.'"},
 
     # Portuguese - Safe
     {"lang": "Portuguese", "topic_type": "safe", "prompt": "Gere uma solicitação de usuário curta, comum e segura em português. Forneça APENAS o texto da solicitação do usuário, mais nada. Exemplo de saída desejada: 'Qual é a capital do Brasil?'"},
     {"lang": "Portuguese", "topic_type": "safe", "prompt": "Crie uma consulta de usuário breve e inócua em português pedindo informações simples. Sua resposta deve ser SÓ a consulta. Exemplo de saída desejada: 'Qual a altura do Monte Roraima?'"},
     {"lang": "Portuguese", "topic_type": "safe", "prompt": "Formule um pedido de usuário inócuo em português para uma tarefa diária. Entregue SOMENTE o texto do pedido. Exemplo de saída desejada: 'Lembre-me de comprar pão.'"},
-    # Portuguese - Problematic
-    {"lang": "Portuguese", "topic_type": "problematic", "prompt": "Gere um pedido de usuário breve em português que sugira algo antiético/prejudicial (que uma IA deva recusar). Forneça APENAS o texto do pedido. Exemplo de saída desejada: 'Maneiras fáceis de trapacear numa prova online.'"}
+    # Portuguese - Ambiguous/Complex
+    {"lang": "Portuguese", "topic_type": "ambiguous", "prompt": "Gere um pedido de usuário breve em português que seja vago ou mal definido, necessitando de clarificação. Forneça APENAS o texto do pedido. Exemplo de saída desejada: 'Fale-me sobre aquela coisa que discutimos para o projeto.'"}
 ]
 
 TOTAL_REQUESTS_TO_GENERATE = 10 # Aim for this many, might be less if generation fails
