@@ -19,16 +19,7 @@ It's recommended to use a virtual environment. This project is designed to be ru
 uv sync
 ```
 
-### 3. Initialize the Database
-
-Run the `init_db.py` script to create the `requests.db` SQLite file and the necessary table:
-
-```bash
-uv run init_db.py
-```
-This will create a `requests.db` file in the project root.
-
-### 4. Configure API Keys
+### 3. Configure API Keys
 
 Each agent requires an API key for its respective LLM provider. Set these as environment variables:
 
@@ -51,15 +42,13 @@ export GOOGLE_API_KEY="your_google_api_key"
   ```bash
   export AWS_ACCESS_KEY_ID="your_aws_access_key_id"
   export AWS_SECRET_ACCESS_KEY="your_aws_secret_access_key"
-  # If using temporary credentials, also set:
-  # export AWS_SESSION_TOKEN="your_aws_session_token"
   ```
 
 **For Ollama Agent (`ollama_agent.py`):**
 -   **Install Ollama:** Follow the instructions at [https://ollama.com/](https://ollama.com/) to download and install Ollama on your system.
--   **Pull Gemma3n model:** 
+-   **Pull Llama 3.1 model:** 
     ```bash
-    ollama pull gemma3n:e2b
+    ollama pull llama3.1:latest
     ```
     Ensure the Ollama application is running (it usually runs as a background server).
 
