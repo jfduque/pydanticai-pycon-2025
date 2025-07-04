@@ -2,11 +2,13 @@ import sqlite3
 from rich.console import Console
 from rich.table import Table
 from rich import box
+import os
 
 
 def fetch_applications():
     """Fetch id, full_name, date_of_birth, address, ssn, income, expenses, and credit_score."""
-    conn = sqlite3.connect("credit_applications.db")
+    db_path = os.path.join(os.path.dirname(__file__), "credit_applications.db")
+    conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
     cur.execute("""

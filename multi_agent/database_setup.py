@@ -1,10 +1,12 @@
 import sqlite3
 from faker import Faker
+import os
 
 
 def setup_database(num_applicants=10):
     """Creates and populates the SQLite database with more realistic mock data."""
-    conn = sqlite3.connect("credit_applications.db")
+    db_path = os.path.join(os.path.dirname(__file__), "credit_applications.db")
+    conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     fake = Faker()
 
@@ -49,7 +51,7 @@ def setup_database(num_applicants=10):
     conn.commit()
     conn.close()
     print(
-        f"Database 'credit_applications.db' created and populated successfully with {num_applicants} applicants."
+        f"Database created and populated successfully with {num_applicants} applicants."
     )
 
 

@@ -4,6 +4,7 @@ import random
 import sqlite3
 from dataclasses import dataclass
 from typing import Literal
+import os
 
 from pydantic import BaseModel
 from rich.console import Console
@@ -128,7 +129,7 @@ async def main():
     args = parser.parse_args()
 
     # --- Database Setup ---
-    db_path = "credit_applications.db"
+    db_path = os.path.join(os.path.dirname(__file__), "credit_applications.db")
 
     # --- Run Credit Feasibility ---
     if args.app_id:
