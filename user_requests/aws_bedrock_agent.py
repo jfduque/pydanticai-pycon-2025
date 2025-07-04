@@ -7,7 +7,7 @@ from pydantic_ai.providers.bedrock import BedrockProvider
 from llm_schemas import AgentResponse
 
 # --- Configuration ---
-DB_NAME = "requests.db"
+DB_NAME = os.path.join(os.path.dirname(__file__), "requests.db")
 AWS_REGION = os.environ.get("AWS_REGION", "us-east-1")
 BEDROCK_MODEL_ID = "amazon.nova-lite-v1:0"
 

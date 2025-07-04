@@ -1,6 +1,8 @@
 import sqlite3
+import os
 
-DB_NAME = "requests.db"
+DB_NAME = os.path.join(os.path.dirname(__file__), "requests.db")
+
 
 def initialize_database():
     """Initializes the SQLite database with the requests table."""
@@ -20,7 +22,8 @@ def initialize_database():
 
     conn.commit()
     conn.close()
-    print(f"Database '{DB_NAME}' initialized successfully with 'requests' table.")
+    print("Database initialized successfully")
+
 
 if __name__ == "__main__":
     initialize_database()

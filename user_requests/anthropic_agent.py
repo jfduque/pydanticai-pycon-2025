@@ -6,7 +6,7 @@ from pydantic_ai import Agent
 from llm_schemas import AgentResponse
 
 # --- Configuration ---
-DB_NAME = "requests.db"
+DB_NAME = os.path.join(os.path.dirname(__file__), "requests.db")
 # ANTHROPIC_API_KEY is read from environment variables by default
 MODEL_NAME = "anthropic:claude-sonnet-4-0"
 

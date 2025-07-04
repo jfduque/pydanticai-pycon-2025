@@ -7,7 +7,7 @@ from pydantic_ai.providers.openai import OpenAIProvider
 from llm_schemas import AgentResponse
 
 # --- Configuration ---
-DB_NAME = "requests.db"
+DB_NAME = os.path.join(os.path.dirname(__file__), "requests.db")
 OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
 OLLAMA_MODEL_NAME = "llama3.1"
 

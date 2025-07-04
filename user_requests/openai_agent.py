@@ -9,7 +9,7 @@ from pydantic_ai.providers.openai import OpenAIProvider
 from llm_schemas import AgentResponse
 
 # --- Configuration ---
-DB_NAME = "requests.db"
+DB_NAME = os.path.join(os.path.dirname(__file__), "requests.db")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 MODEL_NAME = "gpt-4o"
 

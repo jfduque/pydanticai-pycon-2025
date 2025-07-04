@@ -5,7 +5,7 @@ from pydantic_ai import Agent
 from llm_schemas import AgentResponse
 
 # --- Configuration ---
-DB_NAME = "requests.db"
+DB_NAME = os.path.join(os.path.dirname(__file__), "requests.db")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 if not GEMINI_API_KEY:
     raise EnvironmentError("GEMINI_API_KEY environment variable is not set.")

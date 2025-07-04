@@ -1,5 +1,6 @@
 import argparse
 import sqlite3
+import os
 from rich.console import Console
 from rich.table import Table
 from rich import box
@@ -49,7 +50,7 @@ def main():
     parser.add_argument(
         "db",
         nargs="?",
-        default="requests.db",
+        default=os.path.join(os.path.dirname(__file__), "requests.db"),
         help="Path to the SQLite database file (default: requests.db)",
     )
     parser.add_argument(
