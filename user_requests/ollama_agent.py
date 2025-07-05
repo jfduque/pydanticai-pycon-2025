@@ -71,8 +71,6 @@ def call_ollama_with_pydantic_ai(request_body_text: str) -> AgentResponse | None
             print(
                 f"Ollama model '{OLLAMA_MODEL_NAME}' not found on server {OLLAMA_HOST}."
             )
-        # The old fallback logic using extract_json has been removed as it's
-        # no longer necessary with the new Agent class.
         return None
 
 
@@ -101,16 +99,6 @@ def main():
     if not os.path.exists(DB_NAME):
         print(f"Database file {DB_NAME} not found. Please run init_db.py first.")
         return
-
-    # Optional: A quick check for Ollama server reachability at startup
-    # This is not strictly necessary as errors will be caught per-call too.
-    try:
-        # Simple way to check, PydanticAI chain init might do this too.
-        # For now, we rely on error handling in `call_ollama_with_pydantic_ai`.
-        # If PydanticAI's OllamaChain has a health check or list models method, that could be used.
-        pass
-    except Exception as e:
-        print(f"Warning: Initial check for Ollama server at {OLLAMA_HOST} failed. {e}")
 
     conn = get_db_connection()
     if not conn:
@@ -147,4 +135,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nScript interrupted by user (Ctrl+C). Exiting...")
